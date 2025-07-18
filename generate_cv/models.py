@@ -7,7 +7,7 @@ class Info(models.Model):
     experience = models.JSONField(blank=True, null=True)
     projects = models.JSONField(blank=True, null=True)
     skills = models.JSONField(blank=True, null=True)
-    languages = models.JSONField(blank=True, null=True)
+    languages = models.CharField(max_length=255, blank=True, null=True)
     contacts = models.JSONField(blank=True, null=True)
     profile = models.JSONField(blank=True, null=True)
     photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)

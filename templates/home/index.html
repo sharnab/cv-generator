@@ -29,6 +29,11 @@
                 {{ error }}
             </div>
         {% endif %}
+        {% if message %}
+            <div class="success">
+                {{ message }}
+            </div>
+        {% endif %}
         <h2 class="text-2xl font-bold mb-4">CV List</h2>
         <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead class="bg-gray-100">
@@ -50,7 +55,7 @@
                     </td>
                     <td class="py-3 px-4">
                         <a href="{% url 'generate_cv:view' d.id %}" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 inline-block">View</a>
-                        
+                        <a href="{% url 'update_info:edit' d.id %}" class="bg-blue-500 text-white px-3 py-1 rounded mr-2 inline-block">Edit</a>
                     </td>
                 </tr>
                 {% endfor %}

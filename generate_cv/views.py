@@ -16,6 +16,7 @@ def generate(request, id=None):
             'data': data,
             'basics': data.basics,
             'contacts': data.contacts,
+            'languages': data.languages,
             'skills_json': skills_json,
             'projects_json': projects_json,
             'education_json': education_json,
