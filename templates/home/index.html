@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENERATE CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">CV Management</h1>
+            <nav>
+                <a href="{% url 'home:index' %}" class="mr-4 hover:underline">Home</a>
+                <a href="{% url 'insert_info:index' %}" class="mr-4 hover:underline">Add Informations</a>
+                <!-- <a href="#" class="hover:underline">Logout</a> -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4">
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+        <h2 class="text-2xl font-bold mb-4">CV List</h2>
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="py-3 px-4 text-left">Photo</th>
+                    <th class="py-3 px-4 text-left">Name</th>
+                    <th class="py-3 px-4 text-left">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                {% for d in data %}
+                <tr class="border-t">
+                    <td class="py-3 px-4">
+                        <img src="{{ d.photo.url }}" alt="Student Photo" class="w-12 h-12 rounded-full object-cover">
+                    </td>
+                    <td class="py-3 px-4">
+                        {{ d.basics.full_name|default_if_none:"-" }}
+                    </td>
+                    <td class="py-3 px-4">
+                        <a href="{% url 'generate_cv:view' d.id %}" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 inline-block">View</a>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" class="py-3 px-4 text-center">No students found.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white mt-8">
+        <div class="container mx-auto p-4 text-center">
+            &copy; 2025 CV Management System. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+
+</html>
